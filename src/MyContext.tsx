@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, ReactNode, useMemo } from 'react';
 import validateAadhaarSyntax from './functions/validateAadhaarSyntax';
 import getAadharQRData from './functions/getAadharQRData';
-import getBranchFromIFSC from './functions/getBranchFromIFSC';
+import getBranchFromIFSC, { BankDetails } from './functions/getBranchFromIFSC';
 import checkPanDetails from './functions/validatePAN';
 import { generateUPILink, launchUPI, UPIConfig, UPIApp } from './functions/upi';
 
@@ -9,7 +9,7 @@ interface LibContextType {
 
     validateAadhaarSyntax: (aadhaar: string) => boolean;
     getAadharQRData: (hash: string) => Promise<{}>;
-    getBranchFromIFSC: (ifscCode: string) => Promise<{}>;
+    getBranchFromIFSC: (ifscCode: string) => Promise<BankDetails | null>;
     checkPanDetails: (pan: string) => { panNumber: string | null, isValid: boolean, panType: string };
     upi: {
         generateLink: (config: UPIConfig) => string;
