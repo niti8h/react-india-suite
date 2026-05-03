@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import { resolve } from 'path';
+import path, { resolve } from 'path';
 import dts from 'vite-plugin-dts';
 
 export default defineConfig({
@@ -20,6 +20,14 @@ export default defineConfig({
                     'react-dom': 'ReactDOM',
                 },
             },
+        },
+    },
+    resolve: {
+        alias: {
+            // This tells Vite: "If anyone asks for React, 
+            // ONLY look in the demo app's node_modules."
+            'react': path.resolve(__dirname, './node_modules/react'),
+            'react-dom': path.resolve(__dirname, './node_modules/react-dom'),
         },
     },
 });
